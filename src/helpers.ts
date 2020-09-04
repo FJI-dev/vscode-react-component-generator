@@ -59,34 +59,10 @@ export class FileHelper {
 
         componentContent = removeBetweenTags(globalConfig.lifecycleType, removeLifecycleType, componentContent);
 
-        let filename = `${componentDir}/${compName}.${componentConfig.extension}`;
+        let filename = `${componentDir}/index.js`;
 
         if (componentConfig.create) {
             return this.createFile(filename, componentContent)
-                .map(result => filename);
-        }
-        else {
-            return Observable.of('');
-        }
-    };
-
-    public static createIndexFile(componentDir: string, componentName: string): Observable<string> {
-      const globalConfig: GlobalInterface = getConfig().get('global');
-      const indexConfig: IndexInterface = getConfig().get('indexFile');
-
-      let templateFileName = this.assetRootDir + '/templates/index.template';
-        if (indexConfig.template) {
-            templateFileName = this.resolveWorkspaceRoot(indexConfig.template);
-        }
-
-        const compName = this.setName(componentName);
-        let indexContent = fs.readFileSync( templateFileName ).toString()
-            .replace(/{componentName}/g, compName)
-            .replace(/{quotes}/g, this.getQuotes(globalConfig));
-
-        let filename = `${componentDir}/index.${indexConfig.extension}`;
-        if (indexConfig.create) {
-            return this.createFile(filename, indexContent)
                 .map(result => filename);
         }
         else {
@@ -108,7 +84,7 @@ export class FileHelper {
         .replace(/{componentName}/g, compName)
         .replace(/{quotes}/g, this.getQuotes(globalConfig));
 
-      let filename = `${componentDir}/${compName}${styleConfig.suffix}.${styleTemplate.ext}`;
+      let filename = `${componentDir}/styles.${styleTemplate.ext}`;
       if (styleConfig.create) {
         return this.createFile(filename, cssContent)
           .map(result => filename);

@@ -32,7 +32,6 @@ export function activate(context: ExtensionContext) {
 
                 return Observable.forkJoin(
                     FileHelper.createComponent(componentDir, componentName, suffix),
-                    FileHelper.createIndexFile(componentDir, componentName),
                     FileHelper.createCSS(componentDir, componentName),
                 );
             })
@@ -60,10 +59,7 @@ export function activate(context: ExtensionContext) {
     };
 
     const componentArray = [
-        { type: "container", commandId: 'extension.genReactContainerComponentFiles' },
-        { type: "stateless", commandId: 'extension.genReactStatelessComponentFiles' },
-        { type: "reduxContainer", commandId: 'extension.genReactReduxContainerComponentFiles' },
-        { type: "reduxStateless", commandId: 'extension.genReactReduxStatelessComponentFiles' },
+        { type: "container", commandId: 'extension.genReactContainerComponentFiles' }
     ];
 
     // The command has been defined in the package.json file

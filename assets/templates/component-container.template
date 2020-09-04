@@ -1,8 +1,15 @@
-import React, { PureComponent } from {quotes}react{quotes};
-import PropTypes from {quotes}prop-types{quotes};
-//import { Test } from {quotes}./{componentName}.styles{quotes};
+import React from {quotes}react{quotes};
+import { withStyles } from '@material-ui/core/styles';
+import useStyles from {quotes}./styles{quotes};
 
-class {componentName} extends PureComponent { 
+/**
+ * {componentName} Class
+ */
+class {componentName} extends React.Component {
+   /**
+   * Constructs the refurbished page
+   * @param {Object} props
+   */
   constructor(props) {
     super(props);
 
@@ -11,10 +18,16 @@ class {componentName} extends PureComponent {
     };
   }
 <legacy>
+   /**
+   * Before the component mounts
+   */
   componentWillMount = () => {
     console.log('{componentName} will mount');
   }
 </legacy>
+   /**
+   * After the component mounted
+   */
   componentDidMount = () => {
     console.log('{componentName} mounted');
   }
@@ -27,32 +40,64 @@ class {componentName} extends PureComponent {
     console.log('{componentName} will update', nextProps, nextState);
   }
 </legacy><reactv16>
+   /**
+   * Get the Derived State for the react error
+   * @param {Object} error - The error.
+   */
   static getDerivedStateFromError(error) {
     // getDerivedStateFromError -> Update state so the next render will show the fallback UI.
     return { hasError: true };
   }
 
+   /**
+   * Catch the component error
+   * @param {Object} error - The error.
+   * @param {Object} info - The info.
+   */
   componentDidCatch(error, info) {
     // You can also log the error to an error reporting service
   }
 
+   /**
+   * Get the Derived State for the react props
+   * @param {Object} nextProps - props.
+   * @param {Object} prevState - props.
+   */
   getDerivedStateFromProps = (nextProps, prevState) => {
     console.log('{componentName} getDerivedStateFromProps', nextProps, prevState);
   }
 
+   /**
+   * Snapshot before update React
+   * @param {Object} nextProps - props.
+   * @param {Object} prevState - props.
+   */
   getSnapshotBeforeUpdate = (prevProps, prevState) => {
     console.log('{componentName} getSnapshotBeforeUpdate', prevProps, prevState);
   }
 </reactv16>
+
+   /**
+   * Comp did update.
+   */
   componentDidUpdate = () => {
     console.log('{componentName} did update');
   }
 
+   /**
+   * Comp Will update.
+   */
   componentWillUnmount = () => {
     console.log('{componentName} will unmount');
   }
 
+   /**
+   * Renders jsx
+   * @return {JSX} elements to render
+   */
   render () {
+    const { classes } = this.props;
+
     if (this.state.hasError) {
       return <h1>Something went wrong.</h1>;
     }
@@ -64,12 +109,4 @@ class {componentName} extends PureComponent {
   }
 }
 
-{componentName}.propTypes = {
-  // bla: PropTypes.string,
-};
-
-{componentName}.defaultProps = {
-  // bla: 'test',
-};
-
-export default {componentName};
+export default withStyles(useStyles)({componentName});

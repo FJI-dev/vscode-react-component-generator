@@ -1,6 +1,7 @@
-// import styled from {quotes}styled-components{quotes};
+import { createStyles } from '@material-ui/core';
 
-// export const Test = styled.div`
-//  display: flex;
-// `;
-//
+const styles = createStyles((theme) => ({
+
+}));
+
+export default styles;
